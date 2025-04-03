@@ -3,7 +3,7 @@
 html{
 	background-color: #FFF8F2;
 	color: #484844;
-	font-size: 100%;
+	font-size:100% ;
 }
 body{
 	background-color: #FFF8F2;
@@ -47,7 +47,7 @@ a{outline: 0;}
 	/* Span styling*/
 
 	/*FROM 40-42 IS 0NLY FOR SHOWING THE SPAN  ON HOVER
-	IT TOOK WAY TOO LONG TO DO THIS....REMEMBER IT DANIEL! (yes i do feel a type of way reading this!!!
+	IT TOOK WAY TOO LONG TO DO THIS....REMEMBER IT DANIEL! (yes i do feel a type of way reading this)!!!
 	*/
 	.spanElement { display: none; }
 	.innerElement:hover  .spanElement {
