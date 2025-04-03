@@ -2,16 +2,16 @@
 /* Global Styles */
 html{
 	background-color: #FFF8F2;
-	color: #484844;
-	font-size: 100%;
+	color: #1e1111;
+	font-size:100% ;
 }
 body{
 	background-color: #FFF8F2;
-	color: #484844;
+	color: #1e1111;
 	font-family: Roboto,sans-serif;
 }
 img{border-radius: 3%;}
-a{outline: 0;}
+a{outline: 0em;}
 /*CSS FOR LANDING PAGE*/
 	/*Menu for landing page*/
 	.menulayout  {
@@ -47,7 +47,7 @@ a{outline: 0;}
 	/* Span styling*/
 
 	/*FROM 40-42 IS 0NLY FOR SHOWING THE SPAN  ON HOVER
-	IT TOOK WAY TOO LONG TO DO THIS....REMEMBER IT DANIEL! (yes i do feel a type of way reading this!!!
+	IT TOOK WAY TOO LONG TO DO THIS....REMEMBER IT DANIEL! (yes i do feel a type of way reading this)!!!
 	*/
 	.spanElement { display: none; }
 	.innerElement:hover  .spanElement {
