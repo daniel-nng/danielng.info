@@ -375,6 +375,9 @@ div li {
 
 	.subTitles {
 		width: 80%;
+		display: flex;
+  		justify-content: center; /* Centers horizontally */
+  		align-items: center;
 	}
 
 	#name {
