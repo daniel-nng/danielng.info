@@ -314,20 +314,49 @@ div li {
 	word-break: break-word;
 }
 
-/* =================================
-   RESPONSIVE BREAKPOINTS
-   ================================= */
+@media screen and (min-width: 1025px) and (max-width: 1600px) {
+    .menulayout {
+        top: 2vw;
+        left: 4vw;
+        font-size: 8.75rem;
+        line-height: 164px;
+    }
 
-/* Small Mobile (up to 480px) */
-@media screen and (max-width: 480px) {
-	.menulayout {
-		font-size: 2rem;
-		line-height: 1.2;
-	}
+    .pageTitle, .subTitles, #tagline {
+        width: 50%;
+        font-size: 2.5rem;
+    }
 
-	.overlay-content {
-		font-size: 1rem;
-	}
+    .hamburger {
+        font-size: 5vw;
+    }
+
+    .overlay-content {
+        font-size: 8.75rem;
+    }
+
+    #i-am, #my-experiences, #and-my-thoughts {
+        top: 11vw;
+        right: 4vw;
+    }
+}
+
+/* Larger Screens (Desktops) */
+@media screen and (min-width: 1601px) {
+    .menulayout {
+        top: 2vw;
+        left: 4vw;
+        font-size: 8.75rem;
+        line-height: 164px;
+    }
+
+    .pageTitle, .subTitles, #tagline {
+        width: 40%;
+        font-size: 2.8rem;
+    }
+
+    .hamburger {
+        font-size:
 
 	.pageTitle {
 		font-size: 1rem;
