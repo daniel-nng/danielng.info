@@ -332,6 +332,11 @@ div li {
 		font-size: 1rem;
 		width: 95%;
 	}
+	.innerElement {
+	outline: 0;
+	font-size: 2rem;
+}
+
 
 	#name {
 		font-size: 1.3rem;
