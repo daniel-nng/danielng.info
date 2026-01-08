@@ -1,0 +1,14 @@
+name: Deploy to Prod on PR Merge
+
+on:
+  pull_request:
+    branches:
+      - main              # target branch for the PR (your prod branch)
+    types:
+      - closed            # fire when PR is closed (merged or just closed)
+
+jobs:
+  deploy-prod:
+    # Only run if the PR was actually merged.
+    if: ${{ github.event.pull_request.merged == true }}
+    runs-on: ubuntu-latest
