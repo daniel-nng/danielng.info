@@ -65,11 +65,11 @@ a{outline: 0;}
 	}
 
 	#i-am{
-		position: absolute;
-		right:  40vw;
+		position:relative;;
+		right: 1em;
 		top: 11vw;	
+	
 	}
-
 	#my-experiences{
 		position: absolute;
 		right: 4vw;
