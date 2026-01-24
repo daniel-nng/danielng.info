@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>DanielNG</title>
@@ -7,17 +7,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=YES">
     
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,500&display=swap" rel="stylesheet"> 
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,500&display=swap"
+      rel="stylesheet"
+    />
     <script type="text/javascript" src="js/jsfile.js"></script>
     <script type="text/javascript" src="js/jquery.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170229688-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-170229688-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
   gtag('config', 'UA-170229688-1');
 
@@ -50,68 +63,118 @@
             </div>
           </div>
 
-          <!-- BEGINING OF THE  QA-->
-          <div class="row justify-content-center">
-            <div class="col-md-auto"></div>
-            <div class="col-md-8 ">
-              <table class ="table table-borderless  table-sm tableMove">
-                <thead>
-                  <tr>
-                            <th id = "qaTitle"> Q&A</th>
-                            <th></th>
-                  </tr>    
-                </thead>
-                <tbody>
-                  <tr>
-                    <th>Film or digital?
-                      <p class="answers"> Grain over pixels any day.</p>
-                    </th>
-                    <td class = "questions">R or Python?
-                      <p class="answers"> Python, I’ve had more experience with it.</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Metro or the Tube?
-                      <p class="answers">Metro, not as nice but I love NYC.</p>
-                    </th>
-                    <td class = "questions">Dancehall or Soca music?
-                      <p class="answers">DANCEHALL ALL DAY.</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Spacemacs Sublime, or VSCode?
-                      <p class="answers">Depends, for web dev I use VSCode and Spacemacs for everything else.</p>
-                    </th>
-                    <td class = "questions">Favorite writer?
-                      <p class="answers">Phillip K Dick, he was so ahead of his time.</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Where are you from?
-                      <p class="answers"> Born in Florida raised in the Cayman Islands.</p>
-                    </th>
-                    <td class = "questions">Figma, Sketch, or Illustrator?
-                      <p class="answers">Figma, the pen tool is so much better</p>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="col-md-auto"></div>
-          </div>
-          <div class="row">
-                  <div class="col-md-6  ">
+    <div id="myNav" class="overlay">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+        >&times;</a
+      >
+      <div class="overlay-content">
+        <a href="i-am.html"
+          >i am<span id="overlay-iam" class="overlayspans"
+            >About me and what I want to do.</span
+          ></a
+        >
+        <a href="my-experiences.html"
+          >my experiences<span id="overlay-imyexp" class="overlayspans"
+            >Where I’ve worked and what I’ve worked on.</span
+          ></a
+        >
+        <a href="and-my-thoughts.html"
+          >and my thoughts<span id="overlay-mythoughts" class="overlayspans"
+            >A portfolio of my ideas and writings.
+          </span></a
+        >
+      </div>
+    </div>
+    <span class="hamburger" onclick="openNav()">&#9776; </span>
 
-                    </div>
-
-          </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-auto pageTitle">
+          i am
         </div>
-                        
-    <!-- Optional JavaScript -->
-    
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    
-  </body>
-  
-</html>
+      </div>
+      <div class="row">
+        <div class="col-md-auto subTitles">
+          <p id="name">Daniel Nicholson-Gardner</p>
+          <img id="mypic" src="images/daniel-16.jpg" />
+          <p id="tagline">A Process Focused Analyst</p>
+        </div>
+      </div>
 
+      <!-- BEGINING OF THE  Q&A-->
+      <div class="row justify-content-center">
+        <div class="col-md-auto"></div>
+        <div class="col-md-8">
+          <table class="table table-borderless table-sm tableMove">
+            <thead>
+              <tr>
+                <th id="qaTitle">Q&A</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>
+                  Film or digital?
+                  <p class="answers">Grain over pixels any day.</p>
+                </th>
+                <td class="questions">
+                  R or Python?
+                  <p class="answers">
+                    Python, I’ve had more experience with it.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Metro or the Tube?
+                  <p class="answers">Metro, not as nice but I love NYC.</p>
+                </th>
+                <td class="questions">
+                  Dancehall or Soca music?
+                  <p class="answers">DANCEHALL ALL DAY.</p>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Spacemacs Sublime, or VSCode?
+                  <p class="answers">
+                    Depends, for web dev I use VSCode and Spacemacs for
+                    everything else.
+                  </p>
+                </th>
+                <td class="questions">
+                  Favorite writer?
+                  <p class="answers">
+                    Phillip K Dick, he was so ahead of his time.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Where are you from?
+                  <p class="answers">
+                    Born in Florida raised in the Cayman Islands.
+                  </p>
+                </th>
+                <td class="questions">
+                  Figma, Sketch, or Illustrator?
+                  <p class="answers">Figma, the pen tool is so much better</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-auto"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-6"></div>
+      </div>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  </body>
+</html>
