@@ -1,183 +1,62 @@
 @charset "utf-8";
+
 /* Global Styles */
-html{
+html {
 	background-color: #FFF8F2;
 	color: #484844;
 	font-size: 100%;
 }
-body{
+
+body {
 	background-color: #FFF8F2;
 	color: #484844;
-	font-family: Roboto,sans-serif;
+	font-family: Roboto, sans-serif;
+	margin: 0;
+	padding: 0;
 }
-img{border-radius: 3%;
+
+img {
+	border-radius: 3%;
+	max-width: 100%;
+	height: auto;
 }
-a{outline: 0;}
-/*CSS FOR LANDING PAGE*/
-	/*Menu for landing page*/
-	.menulayout  {
-		top:2vw;
-		display: flex;
-		flex-direction: column;
-		position: absolute;
-		left:  4vw;
-		font-family: Roboto;
-		font-style: bold;
-		font-weight: 700;
-		font-size: 8.75rem;
-		line-height: 164px;
-		text-decoration: none;
-		color: inherit;
-	}
-	ul li{
-		list-style: none;
-	}
-	/* Hovering over styling*/
-	.menulayout:hover > div{
-		opacity: 0.05;
-	}
-	.menulayout:hover > div:hover {
-		opacity: 1.0;
-	}
-	/*to remove the horrible blue and underline*/
-		a, a:hover{
-		text-decoration: inherit;
-		color: inherit;
-	}
+img.subTitles{
+	display: block;
+	margin: 0 auto;	
+}
 
-	/* Span styling*/
+a {
+	outline: 0;
+}
 
-	/*FROM 40-42 IS 0NLY FOR SHOWING THE SPAN  ON HOVER
-	IT TOOK WAY TOO LONG TO DO THIS....REMEMBER IT DANIEL! (yes i do feel a type of way reading this!!!
-	*/
-	.spanElement { display: none; }
-	.innerElement:hover  .spanElement {
-		display: block;
-	}
-	.innerElement{
-		outline: 0;
-	}
-	.spanElement{
-		font-family: inherit;
-		font-style: normal;
-		font-weight: normal;
-		font-size: 1.75rem;
-		line-height: 33px;
-	}
+/* =================================
+   MOBILE FIRST - BASE STYLES
+   ================================= */
 
-	#i-am{
-		position: absolute;
-		right:  40vw;
-		top: 11vw;	
-	}
+/* Menu for landing page - Mobile */
+.menulayout {
+	top: 5vw;
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	left: 5vw;
+	right: 5vw;
+	font-family: Roboto;
+	font-style: bold;
+	font-weight: 700;
+	font-size: 2.5rem;
+	line-height: 1.2;
+	text-decoration: none;
+	color: inherit;
+}
 
-	#my-experiences{
-		position: absolute;
-		right: 4vw;
-		top: 11vw;
-	}
-	#and-my-thoughts{
-		position: absolute;
-		right: -1vw;
-		top: 13vw;
-	}
-/*END OF CSS FOR LANDING PAGE*/
+ul li {
+	list-style: none;
+}
 
-/*FOR NAVIGATION: At the time of writing this I couldn't rectify the same layout i made for the index.html with the
-	steps necessary for  creating a drop down menu*/
-	.overlay {
-		width: 100%;
-		position: fixed;
-		z-index: 1;
-		top: 0;
-		left: 0;
-		background-color: #FFF8F2;
-		background-color: #FFF8F2;
-		overflow-y: hidden;
-		transition: 0.5s;
-	  }
-	  
-	  .overlay-content {
-		top:2vw;
-		display: flex;
-		flex-direction: column;
-		position: absolute;
-		left:  4vw;
-		font-family: Roboto;
-		font-style: bold;
-		font-weight: 700;
-		font-size: 8.75rem;
-		line-height: 10.25rem;
-		text-decoration: none;
-	  }
-	  
-	  .overlay a {
-		text-decoration: none;
-		color: #484844;
-		display: block;
-		transition: 0.3s;
-	  }
-	  
-	  .overlay-content:hover > a{
-		opacity: 0.05;
-	}
-	.overlay-content:hover > a:hover {
-		opacity: 1.0;
-	}
-	  
-	  .overlay .closebtn {
-		position: absolute;
-		top: -0.6vw;
-		right: 3.6vw;
-		font-size: 6vw;
-		display:block;
-		height: 80px;
-	  }
-	  .hamburger{
-		position: fixed;
-		overflow: hidden;
-		right: 3.2vw;
-		height: 80px;
-		font-size: 5vw;
-		cursor: pointer;
-		color: #484844;
-		
-	  }
-
-	  .overlayspans{
-		font-family: inherit;
-		font-style: normal;
-		font-weight: normal;
-		font-size: 1.75rem;
-		line-height: 2rem;
-		display: none;
-	  }
-	  #overlay-iam{
-		position: absolute;
-		right:  42vw;
-		top: 11vw;
-	  }
-	  #overlay-imyexp{
-		position: absolute;
-		right: 2vw;
-		top: 24vw;
-	  }
-	  #overlay-mythoughts{
-		width:auto;
-		position: absolute;
-		right: -2vw;
-		top: 39vw;
-	  }
-	.overlay-content a:hover  .overlayspans {
-		display: block;
-	}
-/*END OF NAVIGATION SYLING*/
-
-/* i am styling  */
-.container{
-	background-color: inherit;
-	color:inherit;
-	
+/* Hovering over styling */
+.menulayout:hover > div {
+	opacity: 0.05;
 }
 img#mypic{
 	width: 18vw;
@@ -188,12 +67,21 @@ img#mypic{
 .pageTitle{
 	font-weight: 700;
 	font-size: 2.5rem;
-	text-decoration-line: underline;
-	top: 2.2vw;
-	margin: auto;
-	  width: 50%;
-	  text-align: center;
+	line-height: 1.3;
+	text-decoration: none;
+	padding-bottom: 5vw;
+}
 
+.overlay a {
+	text-decoration: none;
+	color: #484844;
+	display: block;
+	transition: 0.3s;
+	margin-bottom: 1.5rem;
+}
+
+.overlay-content:hover > a {
+	opacity: 0.05;
 }
 .subTitles {
 	top: 4.5vw;
@@ -201,76 +89,136 @@ img#mypic{
   	width: 50%;
 	text-align: center;
 }
-.table{color: #484844;}
-#name{
-	font-size: 1.8rem;
-	font-weight: 400;	
-	margin-bottom: 0em;
+
+#overlay-imyexp {
+	position: static;
 }
-#tagline{
-	padding-top: 3vw;
-	font-size: .5rem;
+
+#overlay-mythoughts {
+	position: static;
+}
+
+.overlay-content a:hover .overlayspans {
+	display: block;
+}
+
+/* =================================
+   PAGE CONTENT STYLES
+   ================================= */
+
+.container {
+	background-color: inherit;
+	color: inherit;
+	padding: 1rem;
+	max-width: 100%;
+	overflow-x: hidden;
+}
+
+.pageTitle {
+	font-weight: 700;
+	font-size: 1.8rem;
+	text-decoration-line: underline;
+	margin: 2rem auto 1rem;
+	width: 90%;
+	text-align: center;
+}
+
+.subTitles {
+	margin: 1.5rem auto;
+	width: 90%;
+	text-align: center;
+}
+
+.table {
+	color: #484844;
+}
+
+#name {
+	font-size: 1.5rem;
+	font-weight: 400;
+	margin-bottom: 0.5rem;
+}
+
+#tagline {
+	font-size: 1.2rem;
 	font-weight: 100;
+	margin-top: 1rem;
 	text-align: center;
 	width: 50%;
 	margin: auto;
 	padding-bottom: 3vw;
 }
-.tableMove{
-	text-align:left ;
-	margin-top: 2.8vw;
+
+.tableMove {
+	text-align: left;
+	margin-top: 2rem;
+	padding: 0 1rem;
 }
-#qaTitle{
-	font-size: 2.4vw;
+
+#qaTitle {
+	font-size: 4.5rem;
 	text-decoration: underline;
 	font-weight: 400;
+	margin-bottom: 1rem;
 }
-.answers{
+
+.answers {
 	margin-left: 7px;
 	font-style: normal;
 	font-weight: 200;
+	line-height: 1.6;
 }
-.questions{
-	font-style:normal;
+
+.questions {
+	font-style: normal;
 	font-weight: 700;
+	margin-top: 1rem;
 }
-/*END OF  i am styling  */
 
+/* =================================
+   MY EXPERIENCES PAGE
+   ================================= */
 
-/*MY EXPERIENCES PAGE*/
-#myQuote{
-	font-size: 1.55rem;
+#myQuote {
+	font-size: 1.2rem;
 	font-weight: 100;
 	font-style: italic;
-	padding-bottom: 5vw;
+	padding: 1rem;
+	margin-bottom: 2rem;
 }
-.resume{
-	top: 5vw;
-	padding-bottom: 4vw;
+
+.resume {
+	padding: 1rem;
 	text-align: left;
-	padding-left: 2vw;
-	padding-right: 2vw;
+	margin-bottom: 2rem;
 }
-.outlineText{
+
+.outlineText {
 	border-radius: 3%;
 	background: #484844;
-	color:#FFF8F2;
-	width: 154px;
+	color: #FFF8F2;
+	width: auto;
+	max-width: 154px;
 	text-align: center;
-	height: auto;
+	padding: 0.5rem 1rem;
+	margin: 0.5rem 0;
 }
-div li{
+
+div li {
 	list-style: square;
+	margin-left: 1.5rem;
+	line-height: 1.6;
 }
+
 .role {
-	padding-top: -4px;
+	padding-top: 0.5rem;
 }
-.linkstyling{
-	color:#00b4d8;
-	 text-decoration: underline;
+
+.linkstyling {
+	color: #00b4d8;
+	text-decoration: underline;
+	word-break: break-word;
 }
-/*END OF STYLING  FOR MY EXPERIENCES PAGE*/
-/*RESPONSIVE MEDIA QUERIES*/
 
 @media screen and (min-width: 1025px) and (max-width: 1600px) {
     .menulayout {
@@ -316,5 +264,388 @@ div li{
     .hamburger {
         font-size:
 
-/* Media Queries: Tablet Landscape */
+	.pageTitle {
+		font-size: 1rem;
+		width: 95%;
+	}
+	.innerElement {
+	outline: 0;
+	font-size: 2rem;
+}
 
+
+	#name {
+		font-size: 1.3rem;
+	}
+
+	#tagline {
+		font-size: .2rem;
+	}
+
+	#qaTitle {
+		font-size: 3.2rem;
+	}
+
+	#myQuote {
+		font-size: 1rem;
+	}
+}
+
+/* Tablets (481px to 768px) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+	.menulayout {
+		font-size: 3rem;
+		line-height: 1.3;
+		left: 4vw;
+	}
+
+	.overlay-content {
+		font-size: 3rem;
+		left: 4vw;
+	}
+
+	.pageTitle {
+		font-size: 2rem;
+		width: 80%;
+	}
+
+	.subTitles {
+		width: 80%;
+		display: flex;
+  		justify-content: center; /* Centers horizontally */
+  		align-items: center;
+	}
+
+	#name {
+		font-size: 1.6rem;
+	}
+
+	#tagline {
+		font-size: 1.3rem;
+		text-align: center;
+	}
+
+	#qaTitle {
+		font-size: 3.2 rem;
+	}
+
+	#myQuote {
+		font-size: 1.3rem;
+	}
+
+	.spanElement,
+	.overlayspans {
+		font-size: 1rem;
+	}
+}
+
+/* Tablets Landscape & Small Desktops (769px to 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+	.menulayout {
+		font-size: 5rem;
+		line-height: 1.2;
+		top: 3vw;
+		left: 4vw;
+	}
+
+	.overlay-content {
+		font-size: 5rem;
+		top: 3vw;
+		left: 4vw;
+	}
+
+	.pageTitle {
+		font-size: 2.3rem;
+		width: 70%;
+	}
+
+	.subTitles {
+		width: 70%;
+	}
+
+	#name {
+		font-size: 1.7rem;
+	}
+
+	#tagline {
+		font-size: 1.4rem;
+	}
+
+	#qaTitle {
+		font-size: 2rem;
+	}
+
+	#myQuote {
+		font-size: 1.4rem;
+	}
+
+	.spanElement,
+	.overlayspans {
+		font-size: 1.2rem;
+	}
+
+	/* Start positioning spans absolutely */
+	#i-am {
+		position: absolute;
+		right: 35vw;
+		top: 15vw;
+	}
+
+	#my-experiences {
+		position: absolute;
+		right: 8vw;
+		top: 15vw;
+	}
+
+	#and-my-thoughts {
+		position: absolute;
+		right: 4vw;
+		top: 18vw;
+	}
+
+	#overlay-iam {
+		position: absolute;
+		right: 38vw;
+		top: 14vw;
+	}
+
+	#overlay-imyexp {
+		position: absolute;
+		right: 4vw;
+		top: 28vw;
+	}
+
+	#overlay-mythoughts {
+		position: absolute;
+		right: 0vw;
+		top: 42vw;
+	}
+}
+
+/* Medium Desktops (1025px to 1600px) */
+@media screen and (min-width: 1025px) and (max-width: 1600px) {
+	.menulayout {
+		top: 2vw;
+		left: 4vw;
+		font-size: 7rem;
+		line-height: 1.2;
+	}
+
+	.overlay-content {
+		font-size: 7rem;
+		line-height: 1.2;
+	}
+
+	.pageTitle {
+		font-size: 2.5rem;
+		width: 60%;
+	}
+
+	.subTitles {
+		width: 60%;
+	}
+
+	#tagline {
+		font-size: 1.5rem;
+		text-align: center;
+	}
+
+	#name {
+		font-size: 1.8rem;
+	}
+
+	#qaTitle {
+		font-size: 2.2rem;
+	}
+
+	#myQuote {
+		font-size: 1.55rem;
+	}
+
+	.spanElement,
+	.overlayspans {
+		font-size: 1.5rem;
+	}
+
+	.hamburger {
+		font-size: 3rem;
+		right: 3.2vw;
+	}
+
+	.overlay .closebtn {
+		font-size: 4rem;
+		right: 3.6vw;
+	}
+
+	#i-am {
+		position: absolute;
+		right: 40vw;
+		top: 11vw;
+	}
+
+	#my-experiences {
+		position: absolute;
+		right: 4vw;
+		top: 11vw;
+	}
+
+	#and-my-thoughts {
+		position: absolute;
+		right: -1vw;
+		top: 13vw;
+	}
+
+	#overlay-iam {
+		position: absolute;
+		right: 42vw;
+		top: 11vw;
+	}
+
+	#overlay-imyexp {
+		position: absolute;
+		right: 2vw;
+		top: 24vw;
+	}
+
+	#overlay-mythoughts {
+		position: absolute;
+		right: -2vw;
+		top: 39vw;
+	}
+}
+
+/* Large Desktops (1601px and up) */
+@media screen and (min-width: 1601px) {
+	.menulayout {
+		top: 2vw;
+		left: 4vw;
+		font-size: 8.75rem;
+		line-height: 164px;
+	}
+
+	.overlay-content {
+		font-size: 8.75rem;
+		line-height: 10.25rem;
+	}
+
+	.pageTitle {
+		font-size: 2.8rem;
+		width: 50%;
+	}
+
+	.subTitles {
+		width: 50%;
+	}
+
+	#tagline {
+		font-size: 1.5rem;
+		text-align: center;
+	}
+
+	#name {
+		font-size: 1.8rem;
+	}
+
+	#qaTitle {
+		font-size: 1.vw;
+	}
+
+	#myQuote {
+		font-size: 1.55rem;
+	}
+
+	.spanElement,
+	.overlayspans {
+		font-size: 1.75rem;
+		line-height: 2rem;
+	}
+
+	.hamburger {
+		font-size: 5vw;
+		right: 3.2vw;
+		height: 80px;
+	}
+
+	.overlay .closebtn {
+		font-size: 6vw;
+		right: 3.6vw;
+		top: -0.6vw;
+		height: 80px;
+	}
+
+	#i-am {
+		position: absolute;
+		right: 40vw;
+		top: 11vw;
+	}
+
+	#my-experiences {
+		position: absolute;
+		right: 4vw;
+		top: 11vw;
+	}
+
+	#and-my-thoughts {
+		position: absolute;
+		right: -1vw;
+		top: 13vw;
+	}
+
+	#overlay-iam {
+		position: absolute;
+		right: 42vw;
+		top: 11vw;
+	}
+
+	#overlay-imyexp {
+		position: absolute;
+		right: 2vw;
+		top: 24vw;
+	}
+
+	#overlay-mythoughts {
+		position: absolute;
+		right: -2vw;
+		top: 39vw;
+	}
+}
+
+/* Landscape orientation adjustments for mobile */
+@media screen and (max-height: 480px) and (orientation: landscape) {
+	.menulayout {
+		font-size: 1.8rem;
+		line-height: 1.2;
+		top: 2vh;
+	}
+
+	.overlay-content {
+		font-size: 1.8rem;
+		top: 2vh;
+	}
+
+	.hamburger,
+	.overlay .closebtn {
+		font-size: 2rem;
+		top: 5px;
+		right: 15px;
+	}
+
+	.pageTitle {
+		font-size: 1.5rem;
+		margin-top: 1rem;
+	}
+}
+
+/* Improve touch targets for mobile */
+@media (hover: none) and (pointer: coarse) {
+	.hamburger,
+	.overlay .closebtn {
+		padding: 10px;
+		min-height: 44px;
+		min-width: 44px;
+	}
+
+	a {
+		padding: 8px 0;
+	}
+}
