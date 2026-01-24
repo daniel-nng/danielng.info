@@ -3,7 +3,7 @@ name: Deploy to Development
 on:
   push:
     branches:
-      - dev  # or develop
+      - development  # or develop
 
 jobs:
   deploy:
@@ -26,4 +26,10 @@ jobs:
           --delete \
           --exclude ".git/*" \
           --exclude ".github/*"
+    
+    - name: Invalidate CloudFront Cache
+      run: |
+        aws cloudfront create-invalidation \
+          --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+          --paths "/*"
     
