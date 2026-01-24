@@ -27,5 +27,7 @@ jobs:
       - name: Sync to Development S3
         run: |
           aws s3 sync . s3://danielng.info \
+          --delete \
           --exclude ".git/*" \
           --exclude ".github/*"
+
