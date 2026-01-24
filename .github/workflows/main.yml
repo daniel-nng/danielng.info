@@ -26,4 +26,5 @@ jobs:
           --delete \
           --exclude ".git/*" \
           --exclude ".github/*"
+          --exclude ".DS_Store/*"
     
