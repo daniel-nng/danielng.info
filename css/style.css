@@ -10,7 +10,8 @@ body{
 	color: #484844;
 	font-family: Roboto,sans-serif;
 }
-img{border-radius: 3%;}
+img{border-radius: 3%;
+}
 a{outline: 0;}
 /*CSS FOR LANDING PAGE*/
 	/*Menu for landing page*/
@@ -178,6 +179,12 @@ a{outline: 0;}
 	color:inherit;
 	
 }
+img#mypic{
+	width: 18vw;
+	height: auto;
+	margin-top: 2vw;
+	border-radius: 3%;
+}
 .pageTitle{
 	font-weight: 700;
 	font-size: 2.5rem;
@@ -189,10 +196,10 @@ a{outline: 0;}
 
 }
 .subTitles {
-	top: 3.5vw;
+	top: 4.5vw;
 	margin: auto;
   	width: 50%;
-	  text-align: center;
+	text-align: center;
 }
 .table{color: #484844;}
 #name{
@@ -201,11 +208,13 @@ a{outline: 0;}
 	margin-bottom: 0em;
 }
 #tagline{
-	font-size: 1.5rem;
+	padding-top: 3vw;
+	font-size: .5rem;
 	font-weight: 100;
-	top: 1vw;
-	margin-top: 1vw;
 	text-align: center;
+	width: 50%;
+	margin: auto;
+	padding-bottom: 3vw;
 }
 .tableMove{
 	text-align:left ;
