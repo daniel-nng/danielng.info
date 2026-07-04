@@ -1,0 +1,37 @@
+name: Deploy to Prod on PR Merge
+on:
+  pull_request:
+    branches:
+      - main              # target branch for the PR (your prod branch)
+    types:
+      - closed            # fire when PR is closed (merged or just closed)
+
+jobs:
+  deploy-prod:
+    # Only run if the PR was actually merged.
+    if: ${{ github.event.pull_request.merged == true }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Sync to Production S3
+        run: |
+          aws s3 sync . s3://danielng.info \
+            --delete \
+            --exclude ".git/*" \
+            --exclude ".github/*"
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
