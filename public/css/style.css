@@ -426,6 +426,7 @@ div li {
 	.spanElement,
 	.overlayspans {
 		font-size: 1.2rem;
+		opacity: 70%;
 	}
 
 	/* Start positioning spans absolutely */
@@ -509,6 +510,7 @@ div li {
 	.spanElement,
 	.overlayspans {
 		font-size: 1.5rem;
+		opacity: 70%;
 	}
 
 	.hamburger {
@@ -523,38 +525,39 @@ div li {
 
 	#i-am {
 		position: absolute;
-		right: 40vw;
-		top: 11vw;
+		right: auto;
+		top: auto;
 	}
 
 	#my-experiences {
 		position: absolute;
-		right: 4vw;
-		top: 11vw;
+		right:auto;
+		top: auto;
+		
 	}
 
 	#and-my-thoughts {
 		position: absolute;
-		right: -1vw;
-		top: 13vw;
+		right: auto;
+		top: auto;
 	}
 
 	#overlay-iam {
 		position: absolute;
-		right: 42vw;
-		top: 11vw;
+		right: auto;
+		top: auto;
 	}
 
 	#overlay-imyexp {
 		position: absolute;
-		right: 2vw;
-		top: 24vw;
+		right: auto;
+		top: auto;
 	}
 
 	#overlay-mythoughts {
 		position: absolute;
-		right: -2vw;
-		top: 39vw;
+		right: auto;
+		top: auto;
 	}
 }
 
@@ -602,6 +605,7 @@ div li {
 	.overlayspans {
 		font-size: 1.75rem;
 		line-height: 2rem;
+		opacity: 70%;
 	}
 
 	.hamburger {
@@ -619,38 +623,38 @@ div li {
 
 	#i-am {
 		position: absolute;
-		right: 40vw;
-		top: 11vw;
+		right: 65vw;
+        top: 8vw;
 	}
 
 	#my-experiences {
 		position: absolute;
-		right: 4vw;
-		top: 11vw;
+		right: auto;
+        top: auto;
 	}
 
 	#and-my-thoughts {
 		position: absolute;
-		right: -1vw;
-		top: 13vw;
+		right: auto;
+        top: auto;
 	}
 
 	#overlay-iam {
 		position: absolute;
-		right: 42vw;
-		top: 11vw;
+		right: auto;
+		top: auto;
 	}
 
 	#overlay-imyexp {
 		position: absolute;
-		right: 2vw;
-		top: 24vw;
+		right: auto;
+		top: auto;
 	}
 
 	#overlay-mythoughts {
 		position: absolute;
-		right: -2vw;
-		top: 39vw;
+		right: auto;
+		top: auto;
 	}
 }
 
