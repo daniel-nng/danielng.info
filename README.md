@@ -18,6 +18,7 @@ The code for my personal site, built with [Astro](https://astro.build) as static
 | `npm run test:links` | Check internal links in `dist/` |
 | `npm run test:visual` | Screenshot `BASELINE_URL` (default https://danielng.info) and compare the local build against it |
 | `npm run test:all` | All of the above |
+| `npm run logs` | Traffic report from prod's CloudFront logs (`-- --days 7` for a week, `-- --raw` for every request). Needs `aws login`. |
 
 The first time, run `npx playwright install chromium`. Set `BASE_URL=https://dev.danielng.info` to point the tests at a deployed site.
 

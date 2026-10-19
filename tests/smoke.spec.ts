@@ -53,6 +53,12 @@ test('résumé PDF downloads', async ({ request }) => {
   expect(res.headers()['content-type']).toContain('pdf');
 });
 
+test('robots.txt is served', async ({ request }) => {
+  const res = await request.get('/robots.txt');
+  expect(res.status()).toBe(200);
+  expect(await res.text()).toContain('User-agent: *');
+});
+
 test('view-source easter egg comment is present', async ({ request }) => {
   const html = await (await request.get('/')).text();
   expect(html).toContain("If you're looking at this right now");
