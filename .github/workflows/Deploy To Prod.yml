@@ -1,5 +1,4 @@
 name: Deploy to Prod on PR Merge
-
 on:
   pull_request:
     branches:
@@ -7,27 +6,72 @@ on:
     types:
       - closed            # fire when PR is closed (merged or just closed)
 
+env:
+  PROD_BUCKET: danielng.info
+  PROD_URL: https://danielng.info
+
 jobs:
   deploy-prod:
     # Only run if the PR was actually merged.
     if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
-    
+    # Add required reviewers to this environment in GitHub settings to gate prod deploys.
+    environment:
+      name: production
+      url: https://danielng.info
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-    
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+
+      - name: Build
+        run: npm run build
+
+      - name: Check internal links
+        run: npm run test:links
+
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-    
-      - name: Sync to Development S3
-        run: |
-          aws s3 sync . s3://danielng.info \
-          --delete \
-          --exclude ".git/*" \
-          --exclude ".github/*"
 
+      # Only the build output is uploaded; --delete removes anything not in dist/.
+      - name: Sync build to Production S3
+        run: aws s3 sync dist/ s3://$PROD_BUCKET --delete
+
+      - name: Invalidate CloudFront cache
+        run: |
+          id=$(aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.PROD_CLOUD_FRONT_DISTRIBUTION }} \
+            --paths "/*" \
+            --query Invalidation.Id --output text)
+          aws cloudfront wait invalidation-completed \
+            --distribution-id ${{ secrets.PROD_CLOUD_FRONT_DISTRIBUTION }} --id "$id"
+
+      - name: Smoke tests against prod
+        run: npm test
+        env:
+          BASE_URL: ${{ env.PROD_URL }}
+
+      - name: Upload test report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-prod
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14

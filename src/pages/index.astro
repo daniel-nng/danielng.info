@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout nav={false} fontsHref="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+<Fragment slot="source-comment" set:html={`<!-- If you're looking at this right now, I'm honored . I've been working on this site fora while and wanted 
+                to be able to get it exactly where I wanted it to be. So the fact that you would  at the source code is really
+                awesome to me . Anyways, I hope that you like the site and think it's cool but if you want to talk to 
+                me about it  dm me on Instagram: @danielng.exe. 
+        
+                        ps. If you keep looking at the source code you'll find even more comments like this.... -->`} />
+
+            <div class = " row  menulayout">
+                  <div class=  " col innerElement"><a href="/i-am.html" >i am</a> <span id ="i-am" class= "spanElement">About me and what I want to do.</span></div>  
+                  <div class=  " col innerElement"><a href="/my-experiences.html">my experiences</a><span id ="my-experiences" class= "spanElement">Where I’ve worked and what I’ve worked on.</span></div> 
+                  <div class=  " col innerElement"><a href="/and-my-thoughts.html" >and my thoughts</a><span  id ="and-my-thoughts" class= "spanElement" >A portfolio of my ideas and writings. </span></div>
+        </div>
+</BaseLayout>
