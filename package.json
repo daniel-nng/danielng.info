@@ -1,0 +1,24 @@
+{
+  "name": "danielng-info",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview --port 4321",
+    "test": "playwright test --project=smoke",
+    "test:visual": "node tests/run-visual.mjs",
+    "test:links": "linkinator ./dist --recurse --skip \"^https?://(?!(localhost|127\\.0\\.0\\.1)[:/])\"",
+    "test:all": "npm run build && npm run test:links && npm test && npm run test:visual"
+  },
+  "dependencies": {
+    "astro": "7.3.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "linkinator": "8.1.0"
+  }
+}
