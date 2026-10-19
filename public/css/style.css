@@ -329,11 +329,64 @@ div li {
 	}
 
 	#qaTitle {
-		font-size: 3.2rem;
+		font-size: 2.5rem;
 	}
 
 	#myQuote {
 		font-size: 1rem;
+	}
+
+	/* Experience/portfolio cards: stack the logo above the text instead of
+	   squeezing the text next to a 200px image */
+	.media {
+		flex-direction: column;
+	}
+
+	.media > img {
+		order: -1;
+		align-self: flex-start !important; /* beats Bootstrap's .align-self-* utilities */
+		width: 96px;
+		margin: 0 0 0 1rem !important; /* line up with .resume's 1rem padding */
+	}
+
+	.media-body {
+		min-width: 0;
+		overflow-wrap: break-word;
+	}
+
+	.resume {
+		margin-bottom: 1rem;
+	}
+
+	/* One type scale for card content on phones */
+	.resume h4 {
+		font-size: 1.25rem;
+	}
+
+	.resume h5 {
+		font-size: 1rem;
+		margin-bottom: 0;
+	}
+
+	.rightDate {
+		font-size: 0.875rem;
+	}
+
+	.resume p,
+	.resume b,
+	.resume li,
+	.answers,
+	.table th,
+	.table td {
+		font-size: 0.9375rem;
+	}
+
+	.resume ul {
+		padding-left: 1.25rem;
+	}
+
+	.resume li {
+		margin-left: 0;
 	}
 }
 
