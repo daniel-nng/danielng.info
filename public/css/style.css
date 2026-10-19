@@ -85,6 +85,7 @@ img#mypic {
 	font-weight: normal;
 	font-size: 1rem;
 	line-height: 1.4;
+	opacity: 70%;
 }
 
 .innerElement {
@@ -172,6 +173,7 @@ img#mypic {
 	font-weight: normal;
 	font-size: 1rem;
 	line-height: 1.4;
+	opacity: 70%;
 }
 
 .overlay-content a:hover .overlayspans {
@@ -426,7 +428,6 @@ div li {
 	.spanElement,
 	.overlayspans {
 		font-size: 1.2rem;
-		opacity: 70%;
 	}
 
 	/* Start positioning spans absolutely */
@@ -510,7 +511,6 @@ div li {
 	.spanElement,
 	.overlayspans {
 		font-size: 1.5rem;
-		opacity: 70%;
 	}
 
 	.hamburger {
@@ -531,9 +531,8 @@ div li {
 
 	#my-experiences {
 		position: absolute;
-		right:auto;
+		right: auto;
 		top: auto;
-		
 	}
 
 	#and-my-thoughts {
@@ -605,7 +604,6 @@ div li {
 	.overlayspans {
 		font-size: 1.75rem;
 		line-height: 2rem;
-		opacity: 70%;
 	}
 
 	.hamburger {
@@ -623,20 +621,20 @@ div li {
 
 	#i-am {
 		position: absolute;
-		right: 65vw;
-        top: 8vw;
+		right: auto;
+		top: auto;
 	}
 
 	#my-experiences {
 		position: absolute;
 		right: auto;
-        top: auto;
+		top: auto;
 	}
 
 	#and-my-thoughts {
 		position: absolute;
 		right: auto;
-        top: auto;
+		top: auto;
 	}
 
 	#overlay-iam {
