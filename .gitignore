@@ -9,3 +9,6 @@ dist/
 test-results/
 playwright-report/
 .visual-baseline/
+
+# downloaded CloudFront logs (npm run logs)
+.cf-logs/

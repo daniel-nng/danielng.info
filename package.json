@@ -12,7 +12,8 @@
     "test": "playwright test --project=smoke",
     "test:visual": "node tests/run-visual.mjs",
     "test:links": "linkinator ./dist --recurse --skip \"^https?://(?!(localhost|127\\.0\\.0\\.1)[:/])\"",
-    "test:all": "npm run build && npm run test:links && npm test && npm run test:visual"
+    "test:all": "npm run build && npm run test:links && npm test && npm run test:visual",
+    "logs": "node scripts/cf-logs.mjs"
   },
   "dependencies": {
     "astro": "7.3.5"
