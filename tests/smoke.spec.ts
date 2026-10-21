@@ -64,6 +64,9 @@ test('thoughts filter hides entries by year and type', async ({ page }) => {
 
   await panel.getByLabel('Projects').uncheck();
   await expect(site).toBeHidden();
+
+  await panel.getByLabel('2026').uncheck();
+  await expect(page.locator('.thoughtsEntry:visible')).toHaveCount(0);
   await expect(noResults).toBeVisible();
 
   await panel.getByRole('button', { name: 'Show everything' }).click();
@@ -73,6 +76,15 @@ test('thoughts filter hides entries by year and type', async ({ page }) => {
 
   await page.keyboard.press('Escape');
   await expect(panel).toBeHidden();
+});
+
+test('blog post cards link to their full post', async ({ page, request }) => {
+  await page.goto('/and-my-thoughts.html');
+  const hrefs = await page.$$eval('.thoughtsEntry[data-type="post"] a', (as) => as.map((a) => (a as HTMLAnchorElement).href));
+  expect(hrefs.length).toBeGreaterThan(0);
+  for (const href of hrefs) {
+    expect((await request.get(href)).status(), href).toBe(200);
+  }
 });
 
 for (const vp of viewports) {
