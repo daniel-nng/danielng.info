@@ -1,0 +1,79 @@
+---
+interface Props {
+  /** Years that have at least one entry, newest first. */
+  years: number[];
+  /** Entry types on the page ("project", "post"). */
+  types: string[];
+}
+
+const { years, types } = Astro.props;
+const typeLabels: Record<string, string> = { project: 'Projects', post: 'Blog posts' };
+---
+<!-- Filter: sits to the left of the hamburger and filters .thoughtsEntry cards by type and year -->
+<div class="thoughtsFilter">
+  <button type="button" class="filterToggle" aria-label="Filter posts" aria-expanded="false" aria-controls="filterPanel">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z" /></svg>
+  </button>
+  <div id="filterPanel" class="filterPanel" hidden>
+    <fieldset>
+      <legend>Type</legend>
+      {types.map((type) => (
+        <label><input type="checkbox" name="type" value={type} checked /> {typeLabels[type] ?? type}</label>
+      ))}
+    </fieldset>
+    <fieldset>
+      <legend>Posted in</legend>
+      {years.map((year) => (
+        <label><input type="checkbox" name="year" value={year} checked /> {year}</label>
+      ))}
+    </fieldset>
+    <button type="button" class="filterReset linkstyling">Show everything</button>
+  </div>
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>('.thoughtsFilter')!;
+  const toggle = root.querySelector<HTMLButtonElement>('.filterToggle')!;
+  const panel = root.querySelector<HTMLElement>('.filterPanel')!;
+  const inputs = [...panel.querySelectorAll<HTMLInputElement>('input[type="checkbox"]')];
+  const entries = document.querySelectorAll<HTMLElement>('.thoughtsEntry');
+  const noResults = document.getElementById('noResults');
+
+  const checkedValues = (name: string) =>
+    new Set(inputs.filter((i) => i.name === name && i.checked).map((i) => i.value));
+
+  function applyFilter() {
+    const types = checkedValues('type');
+    const years = checkedValues('year');
+    let shown = 0;
+    for (const entry of entries) {
+      const show = types.has(entry.dataset.type!) && years.has(entry.dataset.year!);
+      entry.hidden = !show;
+      if (show) shown++;
+    }
+    if (noResults) noResults.hidden = shown > 0;
+  }
+
+  function setOpen(open: boolean) {
+    panel.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+  }
+
+  toggle.addEventListener('click', () => setOpen(panel.hidden));
+  panel.addEventListener('change', applyFilter);
+  panel.querySelector('.filterReset')!.addEventListener('click', () => {
+    for (const input of inputs) input.checked = true;
+    applyFilter();
+  });
+
+  // Close on a click outside the filter or on Escape.
+  document.addEventListener('click', (e) => {
+    if (!panel.hidden && !root.contains(e.target as Node)) setOpen(false);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !panel.hidden) {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+</script>

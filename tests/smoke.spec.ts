@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { pages } from './pages';
+import { pages, viewports } from './pages';
 
 const isRemote = !!process.env.BASE_URL;
 
@@ -46,6 +46,45 @@ test('home page links to every section', async ({ page, request }) => {
     expect((await request.get(href)).status(), href).toBe(200);
   }
 });
+
+test('thoughts filter hides entries by year and type', async ({ page }) => {
+  await page.goto('/and-my-thoughts.html');
+  const panel = page.locator('#filterPanel');
+  const fanex = page.locator('.thoughtsEntry', { hasText: 'fanEx' });
+  const site = page.locator('.thoughtsEntry', { hasText: 'danielng.info: This Site' });
+  const noResults = page.locator('#noResults');
+
+  await expect(panel).toBeHidden();
+  await page.locator('.filterToggle').click();
+  await expect(panel).toBeVisible();
+
+  await panel.getByLabel('2019').uncheck();
+  await expect(fanex).toBeHidden();
+  await expect(site).toBeVisible();
+
+  await panel.getByLabel('Projects').uncheck();
+  await expect(site).toBeHidden();
+  await expect(noResults).toBeVisible();
+
+  await panel.getByRole('button', { name: 'Show everything' }).click();
+  await expect(fanex).toBeVisible();
+  await expect(site).toBeVisible();
+  await expect(noResults).toBeHidden();
+
+  await page.keyboard.press('Escape');
+  await expect(panel).toBeHidden();
+});
+
+for (const vp of viewports) {
+  test(`thoughts filter icon sits left of the hamburger @ ${vp.name}`, async ({ page }) => {
+    await page.setViewportSize({ width: vp.width, height: vp.height });
+    await page.goto('/and-my-thoughts.html');
+    const filter = (await page.locator('.filterToggle').boundingBox())!;
+    const hamburger = (await page.locator('.hamburger').boundingBox())!;
+    expect(filter.x + filter.width).toBeLessThanOrEqual(hamburger.x);
+    expect(hamburger.x - (filter.x + filter.width)).toBeLessThan(60);
+  });
+}
 
 test('résumé PDF downloads', async ({ request }) => {
   const res = await request.get('/images/DNG%20Resumev8.pdf');
