@@ -2,12 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout>
-<Fragment slot="source-comment" set:html={`<!-- If you're looking at this right now., I'm honored . I've been working on this site for a while and wanted 
-                to be able to get it exactly where I wanted it to be. So the fact that you would  peek at the source code is really
-                awesome to me . Anyways, I hope that you like the site and think it's cool but if you want to talk to 
-                me about it  dm me on Instagram: @danielng.exe.  
+<Fragment slot="source-comment" set:html={`<!-- If you're looking at this right now, I'm honored. I've been working on this site for a while and wanted 
+                to be able to get it exactly where I wanted it to be. So the fact that you would peek at the source code is really
+                awesome to me. Anyway, I hope that you like the site and think it's cool, but if you want to talk to 
+                me about it, DM me on Instagram: @danielng.exe.  
         
-                        ps. If you keep looking at the source code you'll find even more comments like this....  -->`} />
+                        P.S. If you keep looking at the source code, you'll find even more comments like this....  -->`} />
 <div class="container" >
                             <div class="row">
                               <div class="col-md-auto pageTitle">
@@ -19,20 +19,42 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                                     <p id ="myQuote"> This area of the site is still in progress. However, it will be more than just a portfolio. I believe my work should just be considered in the context of other works.</p>
                                 </div>
                             </div>
+                                    <!--DANIELNG.INFO-->
+                                    <div class = "row justify-content-md-center">
+                                        <div class= "col-md-8 cardCenter">
+                                            <div class="media">
+                                                <img src="/images/icon-192.png" class="align-self-center mr-3" alt="danielng.info logo">
+                                                <div class="media-body resume">
+                                                  <h4 class="mt-0">danielng.info: This Site</h4>
+                                                  <p><b> Who Was It For?</b> Me, and anyone who wants to know more about me.</p>
+                                                  <p><b> What Was It?</b> My personal site, which started out as hand-written HTML pages uploaded to S3. I rebuilt it so it's easier to update and safer to change.</p>
+                                                  <b> What Did I Do?</b>
+                                                  <ul class="mb-0">
+                                                      <li>Ported the site to Astro, with a shared layout and components in place of copy-pasted HTML.</li>
+                                                      <li>Added smoke, link, and visual regression tests with Playwright.</li>
+                                                      <li>Set up GitHub Actions to deploy to a dev site for QA, then to production on S3 and CloudFront after approval.</li>
+                                                      <li>Fixed the mobile layout and added favicons, robots.txt, and a traffic report built from the CloudFront logs.</li>
+                                                  </ul>
+                                                  <p><b> Can I See It?</b> You're looking at it! The code is on <a href="https://github.com/daniel-nng/danielng.info" class="linkstyling">GitHub</a>.</p>
+                                                </div>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    <!--FANEX-->
                                     <div class = "row justify-content-md-center">
                                         <div class= "col-md-8 cardCenter">
                                             <div class="media">
                                                 <div class="media-body resume">
-                                                  <h4 class="mt-0"> fanEx- an UI/UX Concpet</h4>
-                                                  <p><b> Who Was it For?</b> A Student Group for a Case Competition</p>
-                                                  <p><b> What Was it?</b> This is concept for a sports betting futures trading tickets website, called Fan Exchange stylized as fanEx. Users would be buying and selling tickets for various reasons, including: liquidity, opportunity to make guaranteed profit, or even for peace of mind.</p>
+                                                  <h4 class="mt-0"> fanEx: A UI/UX Concept</h4>
+                                                  <p><b> Who Was It For?</b> A student group for a case competition.</p>
+                                                  <p><b> What Was It?</b> This is a concept for a website for trading sports betting futures tickets, called Fan Exchange and stylized as fanEx. Users would buy and sell tickets for various reasons, including liquidity, the opportunity to make a guaranteed profit, or even peace of mind.</p>
                                                   <b> What Did I Do?</b>
                                                   <ul class="mb-0">
-                                                      <li>Collaborted with the team to outline what they wanted.</li>
+                                                      <li>Collaborated with the team to outline what they wanted.</li>
                                                       <li>Designed the fanEx logo.</li>
-                                                      <li>Developed a high fidelty UI/UX concept on Figma.</li>
+                                                      <li>Developed a high-fidelity UI/UX concept in Figma.</li>
                                                   </ul>
-                                                  <p><b> Can I see it?</b> Sure check it out <a href ="https://xd.adobe.com/view/00c5d980-5b3a-48e3-6bfd-b1f31bf2888c-76f4/?fullscreen" class="linkstyling">here</a></p>
+                                                  <p><b> Can I See It?</b> Sure, check it out <a href ="https://xd.adobe.com/view/00c5d980-5b3a-48e3-6bfd-b1f31bf2888c-76f4/?fullscreen" class="linkstyling">here</a>.</p>
                                                 </div>
                                                 <img src="/images/fanexlogo.jpg" class="align-self-right mr-3" alt="...">
                                               </div>
