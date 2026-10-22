@@ -110,7 +110,7 @@ img#mypic {
 .overlay {
 	width: 100%;
 	position: fixed;
-	z-index: 1;
+	z-index: 2; /* above the thoughts filter (z-index 1) */
 	top: 0;
 	left: 0;
 	background-color: #FFF8F2;
@@ -297,10 +297,129 @@ div li {
 	padding-top: 0.5rem;
 }
 
-.linkstyling {
+.linkstyling,
+.resume a {
 	color: #00b4d8;
 	text-decoration: underline;
 	word-break: break-word;
+}
+
+/* =================================
+   AND MY THOUGHTS PAGE
+   ================================= */
+
+/* Filter icon sits just left of the hamburger. It takes the hamburger's
+   font-size and right offset at each breakpoint so the two stay side by side. */
+.thoughtsFilter {
+	--nav-right: 15px;
+	--nav-pad: 0px;
+	position: fixed;
+	z-index: 1; /* above page content, below the nav overlay */
+	top: 5px;
+	right: calc(var(--nav-right) + 1.3em + 2 * var(--nav-pad));
+	font-size: 2.5rem;
+	line-height: 1.5;
+}
+
+.filterToggle {
+	display: block;
+	padding: var(--nav-pad);
+	border: 0;
+	background: none;
+	color: #484844;
+	line-height: inherit;
+	cursor: pointer;
+}
+
+/* Bootstrap outlines every focused button; keep the ring for keyboard users only. */
+.filterToggle:focus:not(:focus-visible) {
+	outline: none;
+}
+
+.filterToggle svg {
+	display: block;
+	width: 0.7em;
+	height: 1.5em;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2;
+	stroke-linejoin: round;
+}
+
+.filterPanel {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	min-width: 13rem;
+	padding: 1rem 1.25rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	text-align: left;
+	background-color: #FFF8F2;
+	border: 2px solid #484844;
+	border-radius: 6px;
+	box-shadow: 0 6px 16px rgba(72, 72, 68, 0.15);
+}
+
+.filterPanel fieldset {
+	margin-bottom: 0.75rem;
+}
+
+.filterPanel legend {
+	font-size: 1rem;
+	font-weight: 700;
+	margin-bottom: 0.25rem;
+}
+
+.filterPanel label {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-bottom: 0.25rem;
+	cursor: pointer;
+}
+
+.filterPanel input {
+	accent-color: #484844;
+}
+
+.filterReset {
+	padding: 0;
+	border: 0;
+	background: none;
+	font-size: 0.9rem;
+	cursor: pointer;
+}
+
+.postDate,
+.resume .postDate {
+	font-size: 0.9rem;
+	opacity: 0.7;
+	margin-bottom: 0.75rem;
+}
+
+.draftLabel {
+	margin-left: 0.5rem;
+	padding: 0 0.4rem;
+	border: 1px solid currentColor;
+	border-radius: 3px;
+	font-size: 0.75rem;
+	text-transform: uppercase;
+}
+
+/* Markdown cards: keep the "What Did I Do?" label tight to its list, like the hand-written cards */
+.thoughtsEntry .resume p:has(+ ul),
+.thoughtsEntry .resume ul {
+	margin-bottom: 0;
+}
+
+.blogPost {
+	font-size: 1.1rem;
+	line-height: 1.7;
+}
+
+.blogPost p {
+	margin-bottom: 1.25rem;
 }
 
 /* =================================
@@ -374,6 +493,7 @@ div li {
 
 	.resume p,
 	.resume b,
+	.resume strong,
 	.resume li,
 	.answers,
 	.table th,
@@ -571,6 +691,11 @@ div li {
 		right: 3.2vw;
 	}
 
+	.thoughtsFilter {
+		--nav-right: 3.2vw;
+		font-size: 3rem;
+	}
+
 	.overlay .closebtn {
 		font-size: 4rem;
 		right: 3.6vw;
@@ -665,6 +790,13 @@ div li {
 		height: 80px;
 	}
 
+	.thoughtsFilter {
+		--nav-right: 3.2vw;
+		font-size: 5vw;
+		/* the hamburger glyph is narrower than 1em at this size */
+		right: calc(var(--nav-right) + 0.95em + 2 * var(--nav-pad));
+	}
+
 	.overlay .closebtn {
 		font-size: 6vw;
 		right: 3.6vw;
@@ -729,6 +861,11 @@ div li {
 		right: 15px;
 	}
 
+	.thoughtsFilter {
+		--nav-right: 15px;
+		font-size: 2rem;
+	}
+
 	.pageTitle {
 		font-size: 1.5rem;
 		margin-top: 1rem;
@@ -742,6 +879,10 @@ div li {
 		padding: 10px;
 		min-height: 44px;
 		min-width: 44px;
+	}
+
+	.thoughtsFilter {
+		--nav-pad: 10px;
 	}
 
 	a {

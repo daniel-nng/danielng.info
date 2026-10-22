@@ -1,0 +1,33 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatMonthYear, getPublishedPosts } from '../../lib/thoughts';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { title, description, date } = post.data;
+const { Content } = await render(post);
+---
+<BaseLayout title={`${title} | DanielNG`}>
+<div class="container">
+  <div class="row">
+    <div class="col-md-auto pageTitle">{title}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-auto subTitles">
+      <p id="myQuote">{description}</p>
+      <p class="postDate"><time datetime={date.toISOString().slice(0, 10)}>{formatMonthYear(date)}</time></p>
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <article class="col-md-8 resume blogPost">
+      <Content />
+      <p><a href="/and-my-thoughts.html" class="linkstyling">← Back to and my thoughts</a></p>
+    </article>
+  </div>
+</div>
+</BaseLayout>
