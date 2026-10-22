@@ -4,6 +4,7 @@ export const pages = [
   { path: '/i-am.html', title: 'DanielNG', nav: true },
   { path: '/my-experiences.html', title: 'DanielNG', nav: true },
   { path: '/and-my-thoughts.html', title: 'DanielNG', nav: true },
+  { path: '/privacy.html', title: 'Privacy | DanielNG', nav: true },
   { path: '/error.html', title: 'Oops! Error', nav: false },
 ];
 

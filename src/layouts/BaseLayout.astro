@@ -1,4 +1,6 @@
 ---
+import Analytics from '../components/Analytics.astro';
+import ErrorReporter from '../components/ErrorReporter.astro';
 import Favicons from '../components/Favicons.astro';
 import NavOverlay from '../components/NavOverlay.astro';
 
@@ -23,22 +25,14 @@ const {
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <ErrorReporter />
+    <Analytics />
     <Favicons />
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link href={fontsHref} rel="stylesheet">
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=UA-170229688-1"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-170229688-1');
-    </script>
   </head>
   <body>
     <slot name="source-comment" />

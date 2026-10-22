@@ -1,0 +1,32 @@
+---
+// Reports uncaught browser errors as `HEAD /_e?m=...` requests. Nothing serves /_e
+// (it 404s), but CloudFront logs every request's query string, so `npm run logs`
+// can list the errors. Loaded first in <head> so it catches errors from later scripts.
+---
+<script is:inline>
+  (function () {
+    var sent = {}, count = 0;
+    function report(msg, src, line, col, stack) {
+      msg = String(msg || '');
+      // "Script error." with no source is a cross-origin script hiding its details.
+      if (!msg || count >= 5 || sent[msg] || (msg === 'Script error.' && !src)) return;
+      sent[msg] = 1;
+      count++;
+      var q = new URLSearchParams({
+        m: msg.slice(0, 300),
+        s: String(src || '').slice(0, 200),
+        l: (line || 0) + ':' + (col || 0),
+        p: location.pathname,
+        t: String(stack || '').slice(0, 800),
+      });
+      try { fetch('/_e?' + q, { method: 'HEAD', keepalive: true }).catch(function () {}); } catch (e) {}
+    }
+    addEventListener('error', function (e) {
+      if (e.error || e.message) report(e.message, e.filename, e.lineno, e.colno, e.error && e.error.stack);
+    });
+    addEventListener('unhandledrejection', function (e) {
+      var r = e.reason || {};
+      report('Unhandled rejection: ' + (r.message || r), '', 0, 0, r.stack);
+    });
+  })();
+</script>
