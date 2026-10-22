@@ -3,6 +3,7 @@
 //   npm run logs                 last 1 day (UTC)
 //   npm run logs -- --days 7     last 7 days
 //   npm run logs -- --raw        print every request (date, time, status, page, referrer) instead
+//   npm run logs -- --errors     print every browser error reported by src/components/ErrorReporter.astro
 //
 // Needs the AWS CLI signed in (`aws login`). Log files are cached in .cf-logs/ so
 // re-running only downloads new ones.
@@ -18,6 +19,7 @@ const CACHE = '.cf-logs';
 const args = process.argv.slice(2);
 const days = Number(args[args.indexOf('--days') + 1]) || 1;
 const raw = args.includes('--raw');
+const errorsOnly = args.includes('--errors');
 
 // One --include per UTC day; log files are named <distribution>.<YYYY-MM-DD-HH>.<id>.gz
 const dates = Array.from({ length: days + 1 }, (_, i) =>
@@ -35,8 +37,8 @@ const rows = readdirSync(CACHE)
   .flatMap((f) => gunzipSync(readFileSync(join(CACHE, f))).toString().split('\n'))
   .filter((l) => l && !l.startsWith('#'))
   .map((l) => l.split('\t'))
-  .map(([date, time, , , ip, , , page, status, referrer, ua]) =>
-    ({ when: `${date} ${time}`, ip, page, status, referrer, ua: decode(ua ?? '') }))
+  .map(([date, time, , , ip, , , page, status, referrer, ua, query]) =>
+    ({ when: `${date} ${time}`, ip, page, status, referrer, ua: decode(ua ?? ''), query }))
   .filter((r) => r.when >= since)
   .sort((a, b) => a.when.localeCompare(b.when));
 
@@ -45,9 +47,35 @@ if (!rows.length) {
   process.exit(0);
 }
 
+// Browser error reports: HEAD /_e?m=<message>&s=<script>&l=<line:col>&p=<page>&t=<stack>
+const isError = (r) => r.page === '/_e';
+const errorReport = (r) => {
+  const q = new URLSearchParams(decodeOnce(r.query ?? ''));
+  return { when: r.when, page: q.get('p'), message: q.get('m'), at: `${q.get('s')}:${q.get('l')}`, stack: q.get('t'), ua: r.ua };
+};
+
+if (errorsOnly) {
+  const errors = rows.filter(isError).map(errorReport);
+  if (!errors.length) console.log(`No browser errors reported since ${since} UTC.`);
+  for (const e of errors) {
+    console.log(`${e.when}  ${e.page}\n  ${e.message}\n  at ${e.at}\n  ${e.ua}`);
+    if (e.stack) console.log(e.stack.replace(/^/gm, '    '));
+  }
+  process.exit(0);
+}
+
 if (raw) {
   for (const r of rows) console.log([r.when, r.status, r.page, r.referrer].join('\t'));
   process.exit(0);
+}
+
+// CloudFront %-encodes the query string once more on top of the browser's encoding.
+function decodeOnce(s) {
+  try {
+    return decodeURIComponent(s);
+  } catch {
+    return s;
+  }
 }
 
 function decode(s) {
@@ -81,4 +109,5 @@ console.log(`  bot/scanner share:   ${Math.round((100 * rows.filter((r) => BOT.t
 print('Pages (people)', top(visits, (r) => r.page));
 print('External referrers (people)', top(visits.filter((r) => r.referrer !== '-' && !r.referrer.includes('danielng.info')), (r) => r.referrer, 5));
 print('Status codes', top(rows, (r) => r.status));
-print('Most-requested missing URLs (mostly scanners)', top(rows.filter((r) => r.status === '404' || r.status === '403'), (r) => r.page));
+print('Most-requested missing URLs (mostly scanners)', top(rows.filter((r) => !isError(r) && (r.status === '404' || r.status === '403')), (r) => r.page));
+print('Browser errors (details: npm run logs -- --errors)', top(rows.filter(isError).map(errorReport), (e) => `${e.page}  ${e.message}`, 5));
