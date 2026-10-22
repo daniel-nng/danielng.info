@@ -1,0 +1,27 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import { formatMonthYear } from '../lib/thoughts';
+
+interface Props {
+  entry: CollectionEntry<'projects'>;
+  /** Cards alternate which side the logo sits on. */
+  imageFirst: boolean;
+}
+
+const { entry, imageFirst } = Astro.props;
+const { title, date, image, imageAlt } = entry.data;
+const { Content } = await render(entry);
+---
+<div class="row justify-content-md-center thoughtsEntry" data-type="project" data-year={date.getUTCFullYear()}>
+    <div class="col-md-8 cardCenter">
+        <div class="media">
+            {imageFirst && <img src={image} class="align-self-center mr-3" alt={imageAlt}>}
+            <div class="media-body resume">
+                <h4 class="mt-0">{title}</h4>
+                <p class="postDate"><time datetime={date.toISOString().slice(0, 10)}>{formatMonthYear(date)}</time></p>
+                <Content />
+            </div>
+            {!imageFirst && <img src={image} class="align-self-center mr-3" alt={imageAlt}>}
+        </div>
+    </div>
+</div>

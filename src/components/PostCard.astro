@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatMonthYear } from '../lib/thoughts';
+
+interface Props {
+  entry: CollectionEntry<'posts'>;
+}
+
+const { entry } = Astro.props;
+const { title, description, date, draft } = entry.data;
+---
+<div class="row justify-content-md-center thoughtsEntry" data-type="post" data-year={date.getUTCFullYear()}>
+    <div class="col-md-8 cardCenter">
+        <div class="resume">
+            <h4 class="mt-0">{title}</h4>
+            <p class="postDate">
+                Blog post · <time datetime={date.toISOString().slice(0, 10)}>{formatMonthYear(date)}</time>
+                {draft && <span class="draftLabel">Draft</span>}
+            </p>
+            <p>{description}</p>
+            <p><a href={`/thoughts/${entry.id}.html`} class="linkstyling">Read the full post</a></p>
+        </div>
+    </div>
+</div>
