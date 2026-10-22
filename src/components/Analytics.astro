@@ -1,0 +1,80 @@
+---
+// Cookieless page analytics. Sends `HEAD /_p?e=<view|leave|out>&...` requests that,
+// like ErrorReporter's /_e, 404 but land in the CloudFront logs for `npm run logs`.
+// Nothing is stored on the device, and values are bucketed so they can't be combined
+// into a fingerprint. Skipped for automated browsers and when GPC or Do Not Track is on.
+---
+<script is:inline>
+  (function () {
+    if (navigator.webdriver || navigator.globalPrivacyControl || navigator.doNotTrack === '1' || !screen.width) return;
+
+    function send(e, fields) {
+      fields.e = e;
+      fields.p = location.pathname;
+      try { fetch('/_p?' + new URLSearchParams(fields), { method: 'HEAD', keepalive: true }).catch(function () {}); } catch (err) {}
+    }
+    function hundreds(n) { return Math.round(n / 100) * 100; }
+
+    // Origin + path only: referrer query strings carry other sites' tracking IDs.
+    function referrer() {
+      try {
+        var r = new URL(document.referrer);
+        return r.host === location.host ? r.pathname : r.origin + r.pathname;
+      } catch (err) { return ''; }
+    }
+
+    var viewed = false, visibleMs = 0, visibleSince = 0, maxScroll = 0;
+
+    function view() {
+      viewed = true;
+      visibleSince = Date.now();
+      var q = new URLSearchParams(location.search), fields = {
+        r: referrer(),
+        sw: hundreds(screen.width),
+        vw: hundreds(innerWidth),
+        dpr: Math.round(devicePixelRatio || 1),
+        lang: navigator.language || '',
+        tz: Intl.DateTimeFormat().resolvedOptions().timeZone || '',
+        cs: matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
+      };
+      [['us', 'utm_source'], ['um', 'utm_medium'], ['uc', 'utm_campaign'], ['ux', 'utm_content']].forEach(function (k) {
+        if (q.get(k[1])) fields[k[0]] = q.get(k[1]).slice(0, 100);
+      });
+      send('view', fields);
+    }
+
+    function trackScroll() {
+      var h = document.documentElement.scrollHeight;
+      var seen = h <= innerHeight ? 1 : (scrollY + innerHeight) / h;
+      maxScroll = Math.max(maxScroll, Math.min(100, Math.floor(seen * 4) * 25));
+    }
+
+    // Sent on every hide with running totals (mobile browsers often skip pagehide);
+    // the report keeps the largest values per page view.
+    function leave() {
+      if (!viewed || !visibleSince) return;
+      visibleMs += Date.now() - visibleSince;
+      visibleSince = 0;
+      var s = Math.round(visibleMs / 1000);
+      send('leave', { t: s < 60 ? Math.round(s / 5) * 5 : Math.round(s / 30) * 30, sd: maxScroll });
+    }
+
+    if (document.visibilityState === 'visible') view();
+    addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'hidden') leave();
+      else if (!viewed) view();
+      else visibleSince = Date.now();
+    });
+    addEventListener('pagehide', leave);
+    addEventListener('scroll', trackScroll, { passive: true });
+    addEventListener('load', trackScroll);
+
+    // Links off the site, mail links and PDF downloads (the resume).
+    addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (!a) return;
+      if (a.protocol === 'mailto:') send('out', { to: 'mailto' });
+      else if (a.host !== location.host || /\.pdf$/i.test(a.pathname)) send('out', { to: (a.host === location.host ? '' : a.host) + a.pathname });
+    });
+  })();
+</script>

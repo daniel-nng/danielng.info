@@ -889,3 +889,20 @@ div li {
 		padding: 8px 0;
 	}
 }
+
+/* Small privacy link pinned to the bottom of the nav overlay */
+.overlay a.overlay-privacy {
+	position: absolute;
+	bottom: 1rem;
+	left: 5vw;
+	margin: 0;
+	font-family: Roboto;
+	font-size: 0.9rem;
+	color: #484844;
+}
+
+.privacyText h2 {
+	font-size: 1.25rem;
+	font-weight: 700;
+	margin-top: 1.5rem;
+}
