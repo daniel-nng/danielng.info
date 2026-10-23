@@ -13,6 +13,10 @@ body {
 	font-family: Roboto, sans-serif;
 	margin: 0;
 	padding: 0;
+	/* Column layout so the footer sits at the bottom of short pages */
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 }
 
 img {
@@ -896,6 +900,18 @@ div li {
 	bottom: 1rem;
 	left: 5vw;
 	margin: 0;
+	font-family: Roboto;
+	font-size: 0.9rem;
+	color: #484844;
+}
+
+/* Site footer: privacy link in the bottom-left corner of every page */
+.site-footer {
+	margin-top: auto;
+	padding: 1rem 5vw;
+}
+
+.site-footer a.footer-privacy {
 	font-family: Roboto;
 	font-size: 0.9rem;
 	color: #484844;
