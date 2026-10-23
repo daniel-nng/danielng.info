@@ -2,6 +2,7 @@
 import Analytics from '../components/Analytics.astro';
 import ErrorReporter from '../components/ErrorReporter.astro';
 import Favicons from '../components/Favicons.astro';
+import Footer from '../components/Footer.astro';
 import NavOverlay from '../components/NavOverlay.astro';
 
 interface Props {
@@ -38,6 +39,7 @@ const {
     <slot name="source-comment" />
     {nav && <NavOverlay />}
     <slot />
+    <Footer />
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS, then site scripts -->
     <script is:inline src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
